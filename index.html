@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+         width: 100%;
+         height: 100%;
+        }
+        #main{
+             width: 100%;
+             height: 100%;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             background-color: rgba(0, 0, 0, 0.289);
+             gap: 20px;
+        }
+        #cards{
+            width: 20vw;
+            /* height: 50vh; */
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 20px 40px;
+        }
+        #cards p{
+            width:90%;
+            padding: 20px 0;
+        }
+        #dp{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            overflow: hidden;
+            border-radius: 50%;
+         
+        }
+        #dp img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        #cards button{
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            border-radius: 20px;
+            /* background-color: green; */
+            cursor: pointer;
+        } 
+        #Stranger{
+           color: red;
+        }
+        #friends{
+           color: green;
+        }
+        #cards button.red{
+          background-color: red;
+        }
+        #cards button.green{
+          background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="cards">
+            <div id="dp">
+                <!-- <img src="" alt=""></div> -->
+            <h1>Nihal Imran</h1>
+            <h2>Stranger</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, vel veritatis dolorum ipsum ipsa labore eligendi quisquam optio asperiores consectetur! Maxime alias officia mollitia corporis non dicta esse nostrum pariatur?</p>
+            <button>Add Friends</button>
+        </div>
+    </div>
+
+    <script>
+        const cards = [
+            {name:"Niahl Sheikh",img:"https://images.unsplash.com/photo-1529665253569-6d01c0eaf7b6?q=80&w=1685&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",status:"Stranger"},
+            {name:"Sarim Sheikh",img:"https://images.unsplash.com/photo-1457449940276-e8deed18bfff?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",status:"Stranger"},
+            {name:"Huzifa Sheikh",img:"https://images.unsplash.com/photo-1497316730643-415fac54a2af?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",status:"Stranger"},
+        ]
+
+        function print(){
+            var  clutter = "";
+           cards.forEach(function(val,index){
+                clutter += `
+                <div id="cards">
+                    <div id="dp">
+                        <img src="${val.img}" alt="">
+                    </div>
+                    <h1>${val.name}</h1>
+                    <h2 id="${val.status}">${val.status}</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, vel veritatis dolorum ipsum ipsa labore eligendi quisquam optio asperiores consectetur! Maxime alias officia mollitia corporis non dicta esse nostrum pariatur?</p>
+                    <button id=${index} class="${val.status === "Stranger"? "green":"red"}">${val.status === "Stranger"? "Add Friends":"remove Friends"}</button>
+                </div>  `;
+            })
+            document.querySelector("#main").innerHTML = clutter;
+        }
+        print()
+
+        document.querySelector("#main").addEventListener("click",function(details){
+        
+            if(cards[details.target.id].status === "friends"){
+            //    console.log( cards[details.target.id].status)  
+               cards[details.target.id].status = "Stranger"
+
+               
+            }else{
+
+                cards[details.target.id].status = "friends"
+            } 
+            print();
+        })
+
+           
+    </script>
+</body>
+</html>
